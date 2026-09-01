@@ -190,20 +190,20 @@ nxc ldap 192.168.1.100 -u test.spray -p passwords.txt -d Mars.local.com
 
 ```text
 Password1
+Password2
+Password3
 Welcome1
-Summer2024
-Winter2024
-Changeme1
-Letmein1
+Azerty123
+Summer2025
+Winter2025
 Admin123
+Motdepasse1
 Test1234
-Company1
-Spring2024
-Autumn2024
-Hello123
-Secure123
-Passw0rd!
 Qwerty123
+P@ssw0rd
+Hiver2025
+Bonjour1
+Name123
 ```
 
 Chaque tentative ratée génère un **EventID 4625** sur le serveur. Avec 15 mots de passe, je dépasse largement le seuil de ma règle (> 10).
