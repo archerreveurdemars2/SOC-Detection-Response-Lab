@@ -2,7 +2,7 @@
 
 **Document complet — tout le projet en un seul fichier**
 
-Un home lab où j'ai monté une chaîne SOC complète : détecter une attaque **password spraying** sur mon Active Directory, puis **désactiver automatiquement** le compte visé — à la fois dans l'AD local et dans le cloud.
+Un home lab où j'ai monté une chaîne SOC complète : détecter une attaque **brute force** sur mon Active Directory, puis **désactiver automatiquement** le compte visé — à la fois dans l'AD local et dans le cloud.
 
 ---
 
@@ -133,7 +133,7 @@ J'ai aussi branché le connecteur **Defender XDR** pour enrichir la télémétri
 
 ## 🔍 Détection
 
-Le cœur du projet, c'est ma règle de détection. Elle repère un compte qui se prend trop d'échecs de connexion sur une courte période — typiquement ce qui arrive lors d'un **password spraying** ou d'un **brute-force**.
+Le cœur du projet, c'est ma règle de détection. Elle repère un compte qui se prend trop d'échecs de connexion sur une courte période — typiquement ce qui arrive lors d'un **brute force** ou d'un **brute-force**.
 
 ### Requête KQL
 
@@ -171,7 +171,7 @@ Sans ce mapping, l'incident se crée mais il est "vide" — le playbook ne sait 
 
 | Champ | Valeur |
 |-------|--------|
-| Technique | **[T1110.003 — Password Spraying](https://attack.mitre.org/techniques/T1110/003/)** |
+| Technique | **[T1110.003 — brute force](https://attack.mitre.org/techniques/T1110/003/)** |
 | Tactique | Credential Access |
 
 ---
@@ -368,7 +368,7 @@ Honnêtement, c'est la partie dont je suis le plus fier, parce que rien n'a marc
 
 **Cause :** SMB filtré/bloqué dans l'environnement lab (pare-feu).
 
-**Solution :** Basculement vers le protocole **LDAP** pour le password spraying : `nxc ldap ...`
+**Solution :** Basculement vers le protocole **LDAP** pour le brute force : `nxc ldap ...`
 
 ---
 
@@ -421,7 +421,7 @@ Start-ADSyncSyncCycle -PolicyType Delta
 ```bash
 # --- Côté attaque (Kali Linux) ---
 
-# Password spraying via LDAP
+# brute force via LDAP
 nxc ldap 192.168.1.100 -u test.spray -p passwords.txt -d Mars.local.com
 
 # Vérifier la connectivité LDAP
